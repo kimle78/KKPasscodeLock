@@ -92,6 +92,9 @@
     }
 	
 	_enterPasscodeTableView = [[UITableView alloc] initWithFrame:tableViewFrame style:UITableViewStyleGrouped];
+#if 1 // required for iOS7
+    _enterPasscodeTableView.contentInset = UIEdgeInsetsMake(45, _enterPasscodeTableView.contentInset.left, _enterPasscodeTableView.contentInset.bottom, _enterPasscodeTableView.contentInset.right);
+#endif
 	_enterPasscodeTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_enterPasscodeTableView.delegate = self;
 	_enterPasscodeTableView.dataSource = self;
@@ -100,6 +103,9 @@
 	[self.view addSubview:_enterPasscodeTableView];
 	
 	_setPasscodeTableView = [[UITableView alloc] initWithFrame:tableViewFrame style:UITableViewStyleGrouped];
+#if 1 // required for iOS7
+    _setPasscodeTableView.contentInset = UIEdgeInsetsMake(45, _setPasscodeTableView.contentInset.left, _setPasscodeTableView.contentInset.bottom, _setPasscodeTableView.contentInset.right);
+#endif
 	_setPasscodeTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_setPasscodeTableView.delegate = self;
 	_setPasscodeTableView.dataSource = self;
@@ -108,6 +114,9 @@
 	[self.view addSubview:_setPasscodeTableView];
 	
 	_confirmPasscodeTableView = [[UITableView alloc] initWithFrame:tableViewFrame style:UITableViewStyleGrouped];
+#if 1 // required for iOS7
+    _confirmPasscodeTableView.contentInset = UIEdgeInsetsMake(45+47, _confirmPasscodeTableView.contentInset.left, _confirmPasscodeTableView.contentInset.bottom, _confirmPasscodeTableView.contentInset.right);
+#endif
 	_confirmPasscodeTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_confirmPasscodeTableView.delegate = self;
 	_confirmPasscodeTableView.dataSource = self;
@@ -229,6 +238,9 @@
                                      tableView.frame.origin.y,
                                      tableView.frame.size.width,
                                      tableView.frame.size.height);
+#if 1 // required for iOS7
+        tableView.contentInset = UIEdgeInsetsMake(45+47, tableView.contentInset.left, tableView.contentInset.bottom, tableView.contentInset.right);
+#endif
 		[self.view addSubview:tableView];
 	}
 	
@@ -453,7 +465,7 @@
 			} else if ([textField isEqual:_setPasscodeTextField]) {
 				if ([passcode isEqualToString:_setPasscodeTextField.text]) {
 					_setPasscodeTextField.text = @"";
-					_passcodeConfirmationWarningLabel.text = KKPasscodeLockLocalizedString(@"Enter a different passcode. You cannot re-use the same passcode.", @"");
+					_passcodeConfirmationWarningLabel.text = KKPasscodeLockLocalizedString(@"Enter a different passcode. You\r cannot re-use the same passcode.", @"");
 					_passcodeConfirmationWarningLabel.frame = CGRectMake(0.0, 132.0, self.view.bounds.size.width, 60.0);
 				} else {
 					_passcodeConfirmationWarningLabel.text = @"";
@@ -545,7 +557,7 @@
                 for (int i = 0; i < kPasscodeBoxesCount; i++) {
                     [[[_boxes objectAtIndex:_currentPanel] objectAtIndex:i] setImage:[UIImage imageNamed:@"KKPasscodeLock.bundle/box_empty.png"]];
                 }
-                _passcodeConfirmationWarningLabel.text = KKPasscodeLockLocalizedString(@"Enter a different passcode. You cannot re-use the same passcode.", @"");
+                _passcodeConfirmationWarningLabel.text = KKPasscodeLockLocalizedString(@"Enter a different passcode. You\r cannot re-use the same passcode.", @"");
                 _passcodeConfirmationWarningLabel.frame = CGRectMake(0.0, 132.0, self.view.bounds.size.width, 60.0);
             } else {
                 _passcodeConfirmationWarningLabel.text = @"";
