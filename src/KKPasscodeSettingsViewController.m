@@ -250,7 +250,7 @@
 			vc.mode = KKPasscodeModeSet;
 		}
 		
-        UINavigationController *nav = [[UINavigationController alloc]
+        UINavigationController *nav = [[KKPasscodeNavigationController alloc]
                                        initWithNavigationBarClass:[self.navigationController.navigationBar class]
                                        toolbarClass:[self.navigationController.toolbar class]];
         nav.viewControllers = @[vc];
