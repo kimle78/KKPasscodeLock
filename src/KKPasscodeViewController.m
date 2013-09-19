@@ -295,6 +295,10 @@
     }
 }
 
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return [[KKPasscodeLock sharedLock] supportedInterfaceOrientations];
+}
 
 #pragma mark -
 #pragma mark Private methods

@@ -24,6 +24,9 @@ extern CGFloat const kPasscodeBlockDisabled;
 
 @interface KKPasscodeLock : NSObject {
     
+    // supported interface orientations
+    NSInteger _supportedInterfaceOrientations;
+    
     // whatever the erase option is enabled in the passcode settings
 	BOOL _eraseOption;
     
@@ -68,6 +71,8 @@ extern CGFloat const kPasscodeBlockDisabled;
  * reset the passcode settings
  */
 - (void)resetSettings;
+
+@property (nonatomic,assign) NSInteger supportedInterfaceOrientations;
 
 @property (nonatomic,assign) BOOL eraseOption;
 

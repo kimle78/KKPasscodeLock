@@ -31,6 +31,7 @@ static KKPasscodeLock *sharedLock = nil;
 
 @implementation KKPasscodeLock
 
+@synthesize supportedInterfaceOrientations = _supportedInterfaceOrientations;
 @synthesize eraseOption = _eraseOption;
 @synthesize attemptsAllowed = _attemptsAllowed;
 @synthesize passcodeBlockInterval = _passcodeBlockInterval;
@@ -40,6 +41,7 @@ static KKPasscodeLock *sharedLock = nil;
 	@synchronized(self) {
 		if (sharedLock == nil) {
 			sharedLock = [[self alloc] init];
+            sharedLock.supportedInterfaceOrientations = UIInterfaceOrientationMaskAll;
 			sharedLock.eraseOption = YES;
 			sharedLock.attemptsAllowed = 5;
             sharedLock.passcodeBlockInterval = 600.0f; // 10 minutes default,  kPasscodeBlockDisabled means disabled
