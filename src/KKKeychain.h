@@ -19,6 +19,8 @@
 
 @interface KKKeychain : NSObject
 
++ (void)setUseNSUserDefaults:(BOOL)value;
+
 + (BOOL)setString:(NSString*)string forKey:(NSString*)key;
 
 + (NSString*)getStringForKey:(NSString*)key;

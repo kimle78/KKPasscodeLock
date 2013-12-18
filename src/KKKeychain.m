@@ -20,6 +20,13 @@
 
 @implementation KKKeychain
 
+static BOOL useNSUserDefaults;
+
++ (void)setUseNSUserDefaults:(BOOL)value
+{
+    useNSUserDefaults = value;
+}
+
 + (NSString*)appName
 {
 	NSBundle *bundle = [NSBundle bundleForClass:[self class]];
@@ -37,6 +44,16 @@
 	}
 	
 	key = [NSString stringWithFormat:@"%@ - %@", [KKKeychain appName], key];
+    
+    
+    
+    if (useNSUserDefaults == YES) {
+        [[NSUserDefaults standardUserDefaults] setObject:string forKey:key];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        return YES;
+    }
+    
+    
     
 	// First check if it already exists, by creating a search dictionary and requesting that
 	// nothing be returned, and performing the search anyway.
@@ -75,6 +92,15 @@
 + (NSString*)getStringForKey:(NSString*)key
 {
 	key = [NSString stringWithFormat:@"%@ - %@", [KKKeychain appName], key];
+    
+    
+    if (useNSUserDefaults == YES) {
+        NSString *string = (NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:key];
+        return string;
+    }
+    
+    
+    
 	NSMutableDictionary *existsQueryDictionary = [NSMutableDictionary dictionary];
 	[existsQueryDictionary setObject:(__bridge id)kSecClassGenericPassword forKey:(__bridge id)kSecClass];
 	
